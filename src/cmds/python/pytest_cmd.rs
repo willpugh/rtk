@@ -712,8 +712,9 @@ Errors:
     }
 
     #[test]
-    fn test_filter_pytest_transitive_import_error() {
-        let output = include_str!("../../../tests/fixtures/pytest/pytest9_transitive_import_error.txt");
+    fn test_filter_pytest_transitive_import_error_across_versions() {
+        let pytest8 = include_str!("../../../tests/fixtures/pytest/pytest8_transitive_import_error.txt");
+        let pytest9 = include_str!("../../../tests/fixtures/pytest/pytest9_transitive_import_error.txt");
         let expected = r#"Pytest: 0 passed, 0 failed, 1 error
 
 Errors:
@@ -722,7 +723,8 @@ Errors:
      tests/transitive_import_error/sample_package/inner.py:1: in <module>
      E   ModuleNotFoundError: No module named 'rtk_missing_transitive_dependency'"#;
 
-        assert_eq!(filter_pytest_output(output), expected);
+        assert_eq!(filter_pytest_output(pytest8), expected);
+        assert_eq!(filter_pytest_output(pytest9), expected);
     }
 
     #[test]

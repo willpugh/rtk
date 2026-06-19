@@ -1,0 +1,4 @@
+import rtk_missing_transitive_dependency
+
+
+VALUE = rtk_missing_transitive_dependency.VALUE
